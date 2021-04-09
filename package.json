@@ -11,7 +11,11 @@
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
     "axios": "^0.21.1",
+    "bootstrap": "^4.6.0",
+    "bootstrap-icons": "^1.4.1",
+    "node-sass": "^5.0.0",
     "react": "^17.0.2",
+    "react-datepicker": "^3.7.0",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.3",
     "react-router-dom": "^5.2.0",
@@ -47,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "@types/react-datepicker": "^3.1.8",
     "@types/react-router-dom": "^5.1.7",
     "@types/redux-logger": "^3.0.8"
   }

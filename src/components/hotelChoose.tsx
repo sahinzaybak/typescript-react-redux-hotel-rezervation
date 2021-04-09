@@ -1,58 +1,42 @@
 import React,{useEffect,useState } from 'react';
-import { useSelector,connect} from 'react-redux';
-import { RootState } from '../reducers/rootReducer';
+import { connect } from "react-redux";
 
-//Models
-import {IPropsHotelList} from '../models/IPropsHotelList'
+//Components
+import Steps from './steps'
+import StepsOne from './steps/steps-one'
 
 //Actions
-import {fetchHotelsDetailList} from '../actions/hotels'
+import { fetchHotelsList } from '../actions/hotels';
 
-const HotelChoose = (prop:any) => {
-  const [selectedHotelDetail,setSelectedHotelDetail] = useState([{max_adult_size:'', child_status:true}])
-  let hotelList = useSelector((state: RootState) => {return state.hotels.hotelList});
-  let hotelListDetail = useSelector((state: RootState) => {return state.hotels.hotelDetailList});
+interface Ihotel {
+  hotelList:[],
+  fetchHotelsList:VoidFunction
+}
 
-  const selectedHotel = async (e:any )=> { //hotel seçimi
-    if(selectedHotelDetail[0].max_adult_size == ''){ //sadece ilk seçimde servise gitsin
-      await prop.fetchHotelsDetailList();
-    }
-    if(hotelListDetail.length != 0)
-      await setSelectedHotelDetail(hotelListDetail.filter((list:IPropsHotelList) => list.id == e.target.value)) 
-      //seçili otelin bilgilerini state'e ata.
-  }
+const HotelChoose = (prop:Ihotel) => {
+  useEffect(() => {
+    prop.fetchHotelsList();
+  },[]);
 
   return (
-    <div>
-        <div className="as"> 
-          <select className="form-control" onChange={selectedHotel}>
-            <option>Rezarvasyon yapmak istediğiniz hoteli seçin</option>
-            {hotelList.map((_hotelList: IPropsHotelList) => (
-              <option value={_hotelList.id}>{_hotelList.hotel_name}</option>
-            ))}
-          </select>
-          
-          {selectedHotelDetail.length > 0 &&
-            <input type="number" min="0" max={selectedHotelDetail[0].max_adult_size} placeholder="Seçiniz"/>
-          }     
-
-          {!selectedHotelDetail[0].child_status &&
-            <p>BU OTEL ÇOCUK KABUL ETMEMEKTEDİR.</p>
-          }
-          
-            <input type="number" placeholder="çocuk sayısı" />
-           
-        </div>
+    <div className="rezervation">
+      <div className="rezervation-wrp w-100">
+        <Steps />
+        <StepsOne hotelList={prop.hotelList}/>
+      </div>
     </div>
   );
 };
 
-const mapStateToProps = () => {
-  return{}
+
+const mapStateToProps = (state:any) => {
+  return {
+    hotelList: state.hotels.hotelList
+  };
 };
 
 const mapDispatchToProps = {
-  fetchHotelsDetailList
+  fetchHotelsList
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(HotelChoose);
