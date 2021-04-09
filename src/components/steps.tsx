@@ -1,10 +1,10 @@
 import React,{useEffect,useState } from 'react';
+import { RootState } from '../reducers/rootReducer';
+import { useSelector} from 'react-redux';
 
 let stepsCount:Number
 const Steps = () => {
-  useEffect(() => {
-    stepsCount = JSON.parse(localStorage.getItem('stepCount') || '{}')
-  }, []);
+  stepsCount = useSelector((state: RootState) => {return state.hotels.stepCount}); 
   return (
    <div className="rezervation-steps d-flex justify-content-between">
       <div className={`rezervation-steps__item text-center ${stepsCount == 1 ? "active" : ""}`}>

@@ -6,6 +6,7 @@ export interface IPropsHotelList{ // Hotel list
 export interface IPropsHotelListDetail{
   hotelList:[]
   fetchHotelsDetailList:VoidFunction
+  stepCount:(step:number) => void;
   name?:string
 }
 

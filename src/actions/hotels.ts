@@ -22,3 +22,13 @@ export function fetchHotelsDetailList() {
     });
   };
 }
+
+export function stepCount(_stepCount:number) {
+  debugger;
+  return async (dispatch: any) => {
+    dispatch({
+      type: "FETCH_STEP_COUNT",
+      payload: _stepCount,
+    });
+  };
+}

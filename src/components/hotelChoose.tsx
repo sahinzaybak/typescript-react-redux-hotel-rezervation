@@ -1,20 +1,29 @@
 import React,{useEffect,useState } from 'react';
 import { connect } from "react-redux";
+import { RootState } from '../reducers/rootReducer';
+import { useSelector} from 'react-redux';
 
 //Components
 import Steps from './steps'
 import StepsOne from './steps/steps-one'
+import StepsTwo from './steps/steps-two'
 
 //Actions
-import { fetchHotelsList } from '../actions/hotels';
+import { fetchHotelsList,stepCount } from '../actions/hotels';
 
 interface Ihotel {
   hotelList:[],
   fetchHotelsList:VoidFunction
+  stepCount:(step:number) => void;
 }
 
+let stepNumber:number
 const HotelChoose = (prop:Ihotel) => {
+  const [selectedHotelDetail, setSelectedHotelDetail] = useState()
+  stepNumber = useSelector((state: RootState) => {return state.hotels.stepCount}); 
+
   useEffect(() => {
+    prop.stepCount(JSON.parse(localStorage.getItem('stepCount')|| '{}')) // localStorage stepCount değerini state'e taşı.
     prop.fetchHotelsList();
   },[]);
 
@@ -22,12 +31,12 @@ const HotelChoose = (prop:Ihotel) => {
     <div className="rezervation">
       <div className="rezervation-wrp w-100">
         <Steps />
-        <StepsOne hotelList={prop.hotelList}/>
+        {stepNumber == 1 && <StepsOne hotelList={prop.hotelList}/> }
+        {stepNumber == 2 && <StepsTwo/> }
       </div>
     </div>
   );
 };
-
 
 const mapStateToProps = (state:any) => {
   return {
@@ -36,7 +45,8 @@ const mapStateToProps = (state:any) => {
 };
 
 const mapDispatchToProps = {
-  fetchHotelsList
+  fetchHotelsList,
+  stepCount
 };
 
 export default connect(mapStateToProps,mapDispatchToProps)(HotelChoose);
