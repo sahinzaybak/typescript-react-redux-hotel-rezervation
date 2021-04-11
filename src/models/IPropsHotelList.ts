@@ -18,3 +18,18 @@ export interface IPropsHotelSelectedDetail{ // Hotel select Prop
   child_status: boolean,
 }
 
+export interface IPropsHotelRooms{ // Hotel list
+  description: String,
+  id: Number,
+  photo: string,
+  price: Number
+  title: String
+}
+
+export interface IPropsHotelView{ // Hotel list
+  description: String,
+  id: Number,
+  photo: string,
+  price_rate: Number
+  title: String
+}

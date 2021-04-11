@@ -17,14 +17,12 @@ interface Ihotel {
   stepCount:(step:number) => void;
 }
 
-let stepNumber:number
+let stepNumber:Number
 const HotelChoose = (prop:Ihotel) => {
-  const [selectedHotelDetail, setSelectedHotelDetail] = useState()
   stepNumber = useSelector((state: RootState) => {return state.hotels.stepCount}); 
-
   useEffect(() => {
     prop.stepCount(JSON.parse(localStorage.getItem('stepCount')|| '{}')) // localStorage stepCount değerini state'e taşı.
-    prop.fetchHotelsList();
+    prop.fetchHotelsList(); //hotel listesi
   },[]);
 
   return (

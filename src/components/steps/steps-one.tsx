@@ -19,7 +19,9 @@ const StepOne = (prop:IPropsHotelListDetail) => {
   const [exitDate, setExitDate] = useState(new Date());
 
   let hotelListDetail = useSelector((state: RootState) => {return state.hotels.hotelDetailList});
-  
+  function handleChange(date:Date) {setEntryDate(date)}
+  function handleChange2(date:Date) {setExitDate(date)}
+
   function selectedHotel(e:any) { //hotel seçimi
     setSelectedHotelDetail(hotelListDetail.filter((list:IPropsHotelList) => list.id == e.target.value)) //seçili otelin bilgilerini state'e ata 
     setHotelName(prop.hotelList.filter((list:IPropsHotelList) => list.id == e.target.value)) //seçilen hotel ismi
@@ -27,15 +29,7 @@ const StepOne = (prop:IPropsHotelListDetail) => {
     SetChildInput('0')
   }
 
-  function handleChange(date:Date) {
-    setEntryDate(date)
-  }
-
-  function handleChange2(date:Date) {
-    setExitDate(date)
-  }
-
-  function nextStep(){
+  function nextStep(){ //kaydet ve devam et
     const selectedDateEntry = new Date(entryDate); // pass in date param here
     const selectedDateExit = new Date(exitDate); // pass in date param here
     const entryDateFormat = `${selectedDateEntry.getDate()}/${selectedDateEntry.getMonth()+1}/${selectedDateEntry.getFullYear()}`;
@@ -51,8 +45,8 @@ const StepOne = (prop:IPropsHotelListDetail) => {
     prop.fetchHotelsDetailList(); //hotel detay listesi
     let stepOneInfo = JSON.parse(localStorage.getItem('stepOne') || '{}')
     if(stepOneInfo != null){
-        SetAdultInput(stepOneInfo.adultInput)
-        SetChildInput(stepOneInfo.childInput)
+      SetAdultInput(stepOneInfo.adultInput)
+      SetChildInput(stepOneInfo.childInput)
     }
   }, []);
 
@@ -85,12 +79,13 @@ const StepOne = (prop:IPropsHotelListDetail) => {
             {selectedHotelDetail[0].max_adult_size != '' && <span>(Max {selectedHotelDetail[0].max_adult_size} kişi)</span>} 
           </p>
           <input type="number" className="custom-input" min="0" max={selectedHotelDetail[0].max_adult_size} value={adultInput} 
-            placeholder="Seçiniz" onChange={e =>SetAdultInput(e.target.value)} />
+            placeholder="Seçiniz" onChange={e => SetAdultInput(e.target.value)} />
         </div>
 
         <div className="rezervation-item">
           <p className="rezervation-item__title">Çocuk Sayısı</p>
-          <input type="number" className="custom-input" min="0" max="5" disabled={!selectedHotelDetail[0].child_status ? true : false} value={childInput} onChange={e =>SetChildInput(e.target.value)} />
+          <input type="number" className="custom-input" min="0" max="5" disabled={!selectedHotelDetail[0].child_status ? true : false}
+           value={childInput} onChange={e => SetChildInput(e.target.value)} />
         </div>
     </div>
     <a className="button" onClick={nextStep}> Kaydet ve Devam Et </a>
