@@ -36,7 +36,7 @@ const HotelChoose = (prop:Ihotel) => {
   );
 };
 
-const mapStateToProps = (state:any) => {return {hotelList: state.hotels.hotelList}};
+const mapStateToProps = (state: { hotels: { hotelList: Array<string> }}) => {return {hotelList: state.hotels.hotelList}};
 const mapDispatchToProps = {fetchHotelsList,stepCount};
 
 export default connect(mapStateToProps,mapDispatchToProps)(HotelChoose);

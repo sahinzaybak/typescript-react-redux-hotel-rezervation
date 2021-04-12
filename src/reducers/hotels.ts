@@ -1,4 +1,4 @@
-import {hotelActionsType, FETCH_HOTELS_LIST, FETCH_HOTELS_DETAIL_LIST,FETCH_STEP_COUNT} from '../models/hotelActions';
+import {hotelActionsType, FETCH_HOTELS_LIST, FETCH_HOTELS_DETAIL_LIST,FETCH_STEP_COUNT} from '../types/hotelActions';
 
 interface hotelState {
   hotelList: string[];
