@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 //Components
 import HotelChoose from '../components/hotelChoose'
 
-class rezervation extends PureComponent<any> {
+class rezervation extends PureComponent {
   render() {
     return (
       <div className="custom-container">

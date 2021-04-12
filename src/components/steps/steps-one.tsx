@@ -60,9 +60,7 @@ const StepOne = (prop:IPropsHotelListDetail) => {
           ))}
         </select>
       </div>
-
       {!selectedHotelDetail[0].child_status &&<p className="rezervation-error">BU OTEL ÇOCUK ZİYARETÇİ KABUL ETMEMEKTEDİR!</p>}
-      
       <div className="d-flex justify-content-between w-100 mb-4 pb-4">
         <div className="rezervation-item">
           <p className="rezervation-item__title">Giriş Tarihi</p>
@@ -94,9 +92,6 @@ const StepOne = (prop:IPropsHotelListDetail) => {
 };
 
 const mapStateToProps = () => {};
-const mapDispatchToProps = {
-  fetchHotelsDetailList,
-  stepCount
-};
+const mapDispatchToProps = {fetchHotelsDetailList,stepCount};
 
 export default connect(mapStateToProps,mapDispatchToProps)(StepOne);

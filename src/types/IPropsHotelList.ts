@@ -18,7 +18,7 @@ export interface IPropsHotelSelectedDetail{ // Hotel select Prop
   child_status: boolean,
 }
 
-export interface IPropsHotelRooms{ // Hotel list
+export interface IPropsHotelRooms{ // Hotel Room Detail
   description: string,
   id: number,
   photo: string,
@@ -26,7 +26,7 @@ export interface IPropsHotelRooms{ // Hotel list
   title: string
 }
 
-export interface IPropsHotelView{ // Hotel list
+export interface IPropsHotelView{ // Hotel View Detail
   description: string,
   id: number,
   photo: string,
