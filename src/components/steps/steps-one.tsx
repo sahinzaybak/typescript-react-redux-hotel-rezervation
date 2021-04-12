@@ -5,7 +5,7 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
 //types
-import {IPropsHotelList, IPropsHotelListDetail} from '../../models/IPropsHotelList'
+import {IPropsHotelList, IPropsHotelListDetail} from '../../types/IPropsHotelList'
 
 //Actions
 import {fetchHotelsDetailList, stepCount} from '../../actions/hotels'

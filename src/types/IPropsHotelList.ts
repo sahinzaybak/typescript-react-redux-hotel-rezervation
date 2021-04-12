@@ -19,17 +19,17 @@ export interface IPropsHotelSelectedDetail{ // Hotel select Prop
 }
 
 export interface IPropsHotelRooms{ // Hotel list
-  description: String,
-  id: Number,
+  description: string,
+  id: number,
   photo: string,
-  price: Number
-  title: String
+  price: number
+  title: string
 }
 
 export interface IPropsHotelView{ // Hotel list
-  description: String,
-  id: Number,
+  description: string,
+  id: number,
   photo: string,
-  price_rate: Number
-  title: String
+  price_rate: number
+  title: string
 }
